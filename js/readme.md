@@ -10,6 +10,7 @@ Skrip ini dibagi menjadi beberapa bagian:
 2. **Pengurutan Proyek**
 3. **Pembuatan Elemen Proyek**
 4. **Fitur Pengalihan Tema**
+5. **Render Proyek**
 
 ---
 
@@ -18,11 +19,11 @@ Skrip ini dibagi menjadi beberapa bagian:
 ```javascript
 const projects = [
   {
-    img: "img/weather.png",
-    title: "Weather App",
+    img: "img/calculator.png",
+    title: "Calculator",
     description:
-      "Aplikasi ini memberikan informasi cuaca terkini dan ramalan untuk lokasi yang dipilih.",
-    link: "projects/weather-app/index.html",
+      "Kalkulator sederhana untuk melakukan operasi matematika dasar dengan mudah.",
+    link: "projects/calculator/index.html",
   },
   // ... (proyek lainnya)
 ];
@@ -36,49 +37,62 @@ const projects = [
 
 Contoh proyek:
 
-- `Weather App`: Menyediakan informasi cuaca terkini.
+- `Calculator`: Kalkulator sederhana untuk operasi matematika dasar.
 
 ---
 
 ### 2. Pengurutan Proyek
 
 ```javascript
-projects.sort((a, b) => {
-  return a.title.localeCompare(b.title);
-});
+const sortProjects = (sortOption) => {
+  let sortedProjects;
+  if (sortOption === "az") {
+    sortedProjects = [...projects].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
+  } else if (sortOption === "newest") {
+    sortedProjects = [...projects].reverse(); // Terbaru pertama
+  } else {
+    sortedProjects = [...projects].reverse(); // Default: urutan terbalik
+  }
+  renderProjects(sortedProjects);
+};
 ```
 
-- **sort**: Mengurutkan array proyek berdasarkan judul (title) menggunakan `localeCompare` untuk memastikan pengurutan yang tepat berdasarkan abjad.
+- **sortProjects**: Fungsi untuk mengurutkan array proyek berdasarkan pilihan pengguna.
+  - **sortOption**: Parameter yang menentukan cara pengurutan, baik abjad ("az") atau terbaru ("newest").
+  - **localeCompare**: Digunakan untuk memastikan pengurutan yang tepat berdasarkan abjad.
+  - **reverse**: Mengubah urutan array untuk menampilkan proyek terbaru terlebih dahulu.
 
 ---
 
 ### 3. Pembuatan Elemen Proyek
 
 ```javascript
-const projectGrid = document.getElementById("project-grid");
+const createProjectCard = (project) => {
+  return new Promise((resolve) => {
+    const projectCard = document.createElement("div");
+    projectCard.className = "project-card";
+    projectCard.setAttribute("data-aos", "fade-up");
 
-projects.forEach((project) => {
-  const projectCard = document.createElement("div");
-  projectCard.className = "project-card";
-  projectCard.setAttribute("data-aos", "fade-up");
+    projectCard.innerHTML = `
+      <img src="${project.img}" alt="${project.title}" />
+      <h3>${project.title}</h3>
+      <p>${project.description}</p>
+      <a href="${project.link}" class="btn">Lihat Proyek</a>
+    `;
 
-  projectCard.innerHTML = `
-    <img src="${project.img}" alt="${project.title}" />
-    <h3>${project.title}</h3>
-    <p>${project.description}</p>
-    <a href="${project.link}" class="btn">Lihat Proyek</a>
-  `;
-
-  projectGrid.appendChild(projectCard);
-});
+    projectGrid.appendChild(projectCard);
+    resolve(projectCard);
+  });
+};
 ```
 
-- **projectGrid**: Mengambil elemen dengan ID `project-grid` dari DOM untuk menampung kartu proyek.
-- **forEach**: Iterasi melalui setiap objek proyek untuk membuat elemen HTML baru.
-  - **createElement**: Membuat elemen `div` untuk setiap proyek dan menetapkan kelas `project-card`.
-  - **setAttribute**: Menambahkan atribut untuk efek animasi.
+- **createProjectCard**: Fungsi yang membuat elemen `div` untuk setiap proyek dan mengembalikannya dalam bentuk promise.
+  - **projectCard**: Elemen `div` yang dibuat untuk menampilkan proyek.
+  - **setAttribute**: Menambahkan atribut untuk efek animasi saat menggulir.
   - **innerHTML**: Mengisi `innerHTML` dengan konten proyek, termasuk gambar, judul, deskripsi, dan tautan.
-- **appendChild**: Menambahkan `projectCard` ke dalam `projectGrid`.
+  - **appendChild**: Menambahkan `projectCard` ke dalam elemen `projectGrid`.
 
 ---
 
@@ -90,11 +104,9 @@ const body = document.body;
 
 toggleButton.addEventListener("click", () => {
   body.classList.toggle("light-mode");
-  if (body.classList.contains("light-mode")) {
-    toggleButton.textContent = "Switch to Dark Mode";
-  } else {
-    toggleButton.textContent = "Switch to Light Mode";
-  }
+  toggleButton.textContent = body.classList.contains("light-mode")
+    ? "Switch to Dark Mode"
+    : "Switch to Light Mode";
 });
 ```
 
@@ -106,6 +118,33 @@ toggleButton.addEventListener("click", () => {
 
 ---
 
+### 5. Render Proyek
+
+```javascript
+const renderProjects = async (projectsToRender) => {
+  projectGrid.innerHTML = ""; // Menghapus proyek yang ada
+
+  for (const project of projectsToRender) {
+    const projectCard = await createProjectCard(project); // Membuat kartu proyek
+    await new Promise((resolve) => setTimeout(resolve, 300)); // Delay 300ms
+    projectCard.classList.add("show"); // Menambahkan kelas 'show' untuk animasi
+  }
+
+  AOS.init(); // Menginisialisasi ulang AOS
+};
+```
+
+- **renderProjects**: Fungsi untuk menampilkan proyek di grid.
+  - **projectsToRender**: Array proyek yang akan dirender.
+  - **innerHTML**: Menghapus konten yang ada sebelum menambahkan proyek baru.
+  - **for...of**: Iterasi melalui setiap proyek untuk membuat kartu proyek secara asinkron.
+    - **await createProjectCard(project)**: Menunggu hingga kartu proyek dibuat dan ditambahkan.
+    - **setTimeout**: Menambahkan delay untuk menciptakan efek visual yang lebih halus.
+    - **classList.add**: Menambahkan kelas `show` untuk memicu animasi saat proyek muncul.
+  - **AOS.init()**: Menginisialisasi ulang AOS setelah semua kartu ditambahkan untuk efek animasi.
+
+---
+
 ## Kesimpulan
 
-Skrip JavaScript ini memungkinkan pengguna untuk melihat dan mengakses proyek dengan cara yang terstruktur dan dinamis. Selain itu, fitur pengalihan tema memberikan pengalaman pengguna yang lebih baik dengan mendukung tampilan yang lebih nyaman baik dalam mode gelap maupun terang. Skrip ini dirancang untuk integrasi yang mudah dengan HTML dan CSS yang telah disiapkan.
+Skrip JavaScript ini memungkinkan pengguna untuk melihat dan mengakses proyek dengan cara yang terstruktur dan dinamis. Fitur pengalihan tema memberikan pengalaman pengguna yang lebih baik dengan mendukung tampilan yang nyaman baik dalam mode gelap maupun terang. Skrip ini dirancang untuk integrasi yang mudah dengan HTML dan CSS yang telah disiapkan.

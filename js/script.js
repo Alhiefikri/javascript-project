@@ -120,33 +120,48 @@ const body = document.body;
 
 toggleButton.addEventListener("click", () => {
   body.classList.toggle("light-mode");
-  if (body.classList.contains("light-mode")) {
-    toggleButton.textContent = "Switch to Dark Mode";
-  } else {
-    toggleButton.textContent = "Switch to Light Mode";
-  }
+  toggleButton.textContent = body.classList.contains("light-mode")
+    ? "Switch to Dark Mode"
+    : "Switch to Light Mode";
 });
 
 const projectGrid = document.getElementById("project-grid");
 const sortSelect = document.getElementById("sort-select");
 
-// Render projects to the grid
-const renderProjects = async (projectsToRender) => {
-  projectGrid.innerHTML = ""; // Clear existing projects
-  for (const project of projectsToRender) {
+// Function to create and append a project card with a delay
+const createProjectCard = (project) => {
+  return new Promise((resolve) => {
     const projectCard = document.createElement("div");
     projectCard.className = "project-card";
-    projectCard.setAttribute("data-aos", "fade-up");
 
     projectCard.innerHTML = `
-          <img src="${project.img}" alt="${project.title}" />
-          <h3>${project.title}</h3>
-          <p>${project.description}</p>
-          <a href="${project.link}" class="btn">Lihat Proyek</a>
-      `;
+      <img src="${project.img}" alt="${project.title}" />
+      <h3>${project.title}</h3>
+      <p>${project.description}</p>
+      <a href="${project.link}" class="btn">Lihat Proyek</a>
+    `;
+
     projectGrid.appendChild(projectCard);
-  }
+
+    // Resolve the promise after appending the card
+    resolve(projectCard); // Kirim projectCard untuk animasi
+  });
 };
+
+// Render projects to the grid asynchronously
+const renderProjects = async (projectsToRender) => {
+  projectGrid.innerHTML = ""; // Clear existing projects
+
+  for (const project of projectsToRender) {
+    const projectCard = await createProjectCard(project); // Tunggu untuk kartu dibuat
+    await new Promise((resolve) => setTimeout(resolve, 300)); // Delay untuk 300ms
+    projectCard.classList.add("show"); // Tambahkan kelas 'show' untuk memulai animasi
+  }
+
+  // Setelah semua kartu ditambahkan, inisialisasi ulang AOS
+  AOS.init(); // Reinitialize AOS
+};
+
 // Sort projects based on selected option
 const sortProjects = (sortOption) => {
   let sortedProjects;

@@ -19,7 +19,7 @@ h1 {
   color: #ffffff;
 }
 
-/* Tombol yang disesuaikan dengan tema */
+/* Button styles */
 .btn-theme {
   background-color: #3a3a3a; /* Soft dark gray */
   color: #e0e0e0;
@@ -88,7 +88,6 @@ h1 {
 }
 
 /* Project Grid */
-/* Project Grid */
 .project-grid {
   display: flex;
   flex-wrap: wrap;
@@ -96,39 +95,39 @@ h1 {
   padding: 50px;
 }
 
-/* select button */
+/* Controls */
 #controls {
   border: 0.2px solid #fff;
   display: flex;
   gap: 1rem;
   margin-left: 13rem;
-  padding: 10px; /* Menambahkan padding di dalam border */
-  width: fit-content; /* Agar lebar sesuai dengan konten */
-  box-sizing: border-box; /* Menghitung padding dan border dalam lebar total */
+  padding: 10px; /* Padding inside the border */
+  width: fit-content; /* Fit width to content */
+  box-sizing: border-box; /* Include padding and border in total width */
 }
 
 select {
   padding: 10px;
-  border: 1px solid #444; /* Warna border gelap */
-  background-color: #1e1e1e; /* Warna latar belakang select */
-  color: #ffffff; /* Warna teks putih */
-  border-radius: 5px; /* Sudut melengkung */
+  border: 1px solid #444; /* Dark border color */
+  background-color: #1e1e1e; /* Select background color */
+  color: #ffffff; /* White text color */
+  border-radius: 5px; /* Rounded corners */
   font-size: 16px;
-  appearance: none; /* Menghapus tampilan default */
-  cursor: pointer; /* Menunjukkan bahwa ini bisa diklik */
-  transition: background-color 0.3s, border 0.3s; /* Transisi yang halus */
+  appearance: none; /* Remove default appearance */
+  cursor: pointer; /* Indicate clickable */
+  transition: background-color 0.3s, border 0.3s; /* Smooth transition */
 }
 
-/* Gaya saat hover */
+/* Hover styles for select */
 select:hover {
-  background-color: #333; /* Warna latar belakang saat hover */
-  border: 1px solid #666; /* Warna border saat hover */
+  background-color: #333; /* Hover background color */
+  border: 1px solid #666; /* Hover border color */
 }
 
 select:focus {
-  outline: none; /* Menghapus outline default */
-  border: 1px solid #999; /* Border saat fokus */
-  background-color: #2c2c2c; /* Warna latar belakang saat fokus */
+  outline: none; /* Remove default outline */
+  border: 1px solid #999; /* Border on focus */
+  background-color: #2c2c2c; /* Background on focus */
 }
 
 .project-card {
@@ -138,13 +137,20 @@ select:focus {
   overflow: hidden;
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0; /* Start hidden */
+  transform: translateY(20px); /* Slide in from below */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+.project-card.show {
+  opacity: 1; /* Visible */
+  transform: translateY(0); /* Back to original position */
 }
 
 .project-card img {
-  width: 100%; /* Memastikan gambar mengisi lebar card */
-  height: 200px; /* Menetapkan tinggi tetap untuk semua gambar */
-  object-fit: cover; /* Memastikan gambar terpotong sesuai ukuran tanpa mengubah proporsi */
+  width: 100%; /* Ensure image fills card width */
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Crop images to fit */
 }
 
 .project-card h3 {
