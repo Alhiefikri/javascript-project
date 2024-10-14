@@ -96,6 +96,41 @@ h1 {
   padding: 50px;
 }
 
+/* select button */
+#controls {
+  border: 0.2px solid #fff;
+  display: flex;
+  gap: 1rem;
+  margin-left: 13rem;
+  padding: 10px; /* Menambahkan padding di dalam border */
+  width: fit-content; /* Agar lebar sesuai dengan konten */
+  box-sizing: border-box; /* Menghitung padding dan border dalam lebar total */
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #444; /* Warna border gelap */
+  background-color: #1e1e1e; /* Warna latar belakang select */
+  color: #ffffff; /* Warna teks putih */
+  border-radius: 5px; /* Sudut melengkung */
+  font-size: 16px;
+  appearance: none; /* Menghapus tampilan default */
+  cursor: pointer; /* Menunjukkan bahwa ini bisa diklik */
+  transition: background-color 0.3s, border 0.3s; /* Transisi yang halus */
+}
+
+/* Gaya saat hover */
+select:hover {
+  background-color: #333; /* Warna latar belakang saat hover */
+  border: 1px solid #666; /* Warna border saat hover */
+}
+
+select:focus {
+  outline: none; /* Menghapus outline default */
+  border: 1px solid #999; /* Border saat fokus */
+  background-color: #2c2c2c; /* Warna latar belakang saat fokus */
+}
+
 .project-card {
   background-color: #202020; /* Soft dark card background */
   border-radius: 8px;
