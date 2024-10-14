@@ -1,0 +1,197 @@
+/* General styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #181818; /* Dark soft background */
+  color: #e0e0e0; /* Light text for contrast */
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  background-color: #1f1f1f; /* Slightly lighter for header */
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Tombol yang disesuaikan dengan tema */
+.btn-theme {
+  background-color: #3a3a3a; /* Soft dark gray */
+  color: #e0e0e0;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-theme:hover {
+  background-color: #5c5c5c; /* Slightly lighter gray on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-theme:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Profile section */
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 30px;
+  border: 5px solid #ffffff;
+}
+
+.profile-info {
+  max-width: 600px;
+}
+
+.contact-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #2f2f2f; /* Soft dark color for buttons */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #4a4a4a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Project Grid */
+/* Project Grid */
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px;
+}
+
+.project-card {
+  background-color: #202020; /* Soft dark card background */
+  border-radius: 8px;
+  margin: 15px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+  width: 100%; /* Memastikan gambar mengisi lebar card */
+  height: 200px; /* Menetapkan tinggi tetap untuk semua gambar */
+  object-fit: cover; /* Memastikan gambar terpotong sesuai ukuran tanpa mengubah proporsi */
+}
+
+.project-card h3 {
+  padding: 15px;
+  margin: 0;
+}
+
+.project-card p {
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+.project-card a {
+  display: block;
+  text-align: center;
+  padding: 12px 30px;
+  background-color: #2f2f2f; /* Dark button background */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+}
+
+.project-card a:hover {
+  background-color: #4a4a4a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-card a:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #121212;
+}
+
+body.light-mode header {
+  background-color: #ffffff;
+}
+
+body.light-mode h1 {
+  color: #121212;
+}
+
+body.light-mode .profile-container {
+  background-color: #f0f0f0;
+}
+
+body.light-mode .project-card {
+  background-color: #ffffff;
+}
+
+body.light-mode #theme-toggle {
+  background-color: #32cd32;
+  color: #ffffff;
+}
+
+body.light-mode #theme-toggle:hover {
+  background-color: #00ff00;
+}
+
+footer {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+}
