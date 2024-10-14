@@ -2,7 +2,9 @@
 
 Selamat datang di repositori ini! Di sini, Anda akan menemukan berbagai proyek yang dibangun menggunakan JavaScript. Setiap proyek dirancang untuk menunjukkan kemampuan pengembangan web saya dan penerapan berbagai konsep JavaScript. Proyek ini mencakup aplikasi interaktif, alat berguna, dan komponen UI.
 
-
+<p align="center">
+    <img src="img/website.png" alt="Screnshoot App" />
+</p>
 
 ## Daftar Proyek
 
@@ -24,8 +26,7 @@ Berikut adalah daftar proyek yang tersedia dalam repositori ini:
 - **Typing Speed Test**: Uji kecepatan mengetik yang mengukur seberapa cepat pengguna dapat mengetik teks yang ditampilkan.
 - **Weather App**: Aplikasi yang menampilkan informasi cuaca terkini berdasarkan lokasi pengguna.
 
-lebih lengkapnya cek : [Cek Portofolio Project](https://alhiefikri.github.io/javascript-project/) 
-
+lebih lengkapnya cek : [Cek Portofolio Project](https://alhiefikri.github.io/javascript-project/)
 
 ## Cara Menggunakan
 
