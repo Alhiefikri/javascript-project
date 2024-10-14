@@ -174,12 +174,12 @@ body.light-mode .project-card {
 }
 
 body.light-mode #theme-toggle {
-  background-color: #32cd32;
+  background-color: #2f2f2f;
   color: #ffffff;
 }
 
 body.light-mode #theme-toggle:hover {
-  background-color: #00ff00;
+  background-color: #4a4a4a;
 }
 
 footer {
