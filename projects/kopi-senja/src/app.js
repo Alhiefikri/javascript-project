@@ -22,7 +22,7 @@ document.addEventListener("alpine:init", () => {
         this.items.push({ ...newItem, quantity: 1, total: newItem.price });
         this.quantity++;
         this.total += newItem.price;
-        console.log(this.total);
+        // console.log(this.total);
       } else {
         // jika barang sudah ada, cek apakah barang beda atau sama dengan yang ada di cart
         this.items = this.items.map((item) => {
@@ -68,6 +68,51 @@ document.addEventListener("alpine:init", () => {
     },
   });
 });
+
+// Form Validation
+const checkoutButton = document.querySelector(".checkout-button");
+checkoutButton.disabled = true;
+
+const form = document.querySelector("#checkoutForm");
+
+form.addEventListener("keyup", function () {
+  for (let i = 0; i < form.elements.length; i++) {
+    if (form.elements[i].value.length !== 0) {
+      checkoutButton.classList.remove("disabled");
+      checkoutButton.classList.add("disabled");
+    } else {
+      return false;
+    }
+  }
+
+  checkoutButton.disabled = false;
+  checkoutButton.classList.remove("disabled");
+});
+
+// kirim data ketika tombol checkout diklik
+checkoutButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const data = new URLSearchParams(formData);
+  const objData = Object.fromEntries(data);
+  const message = formatMessage(objData);
+  window.open("https://wa.me/6282190715067?text=" + encodeURI(message));
+});
+
+//  format pesan whatsapp
+const formatMessage = (obj) => {
+  return `Data Customer
+    Nama: ${obj.name}
+    Email: ${obj.email}
+    No Hp: ${obj.phone}
+Data Pesanan
+    ${JSON.parse(obj.items).map(
+      (item) => `${item.name} (${item.quantity} x ${rupiah(item.total)}) \n`
+    )}
+TOTAL: ${rupiah(obj.total)}
+
+Terima kasih.`;
+};
 
 // konversi ke Rupiah
 const rupiah = (number) => {
