@@ -55,7 +55,3 @@ Untuk menginstal dan menjalankan proyek ini, ikuti langkah-langkah berikut:
 ## Kontribusi
 
 Kontribusi sangat diterima! Jika Anda memiliki saran, perbaikan, atau ingin melaporkan masalah, silakan buka isu atau ajukan pull request di repositori ini.
-
-## Lisensi
-
-Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Silakan baca file tersebut untuk informasi lebih lanjut.
