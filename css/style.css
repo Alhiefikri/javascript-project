@@ -236,3 +236,74 @@ footer {
 footer p {
   margin: 0;
 }
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px; /* Space between button and icons */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.social-links.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.social-icon {
+  font-size: 24px; /* Adjust icon size */
+  color: #e0e0e0; /* Icon color */
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #4a4a4a; /* Color change on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .profile-pic {
+    margin: 0 0 20px 0; /* Adjust margin for vertical layout */
+  }
+
+  #controls {
+    margin-left: 0; /* Center controls on mobile */
+    justify-content: center;
+    width: 100%; /* Full width */
+  }
+
+  .project-grid {
+    padding: 20px;
+  }
+
+  .project-card {
+    width: 100%; /* Full width for cards on mobile */
+    margin: 10px 0; /* Margin adjustments */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Smaller heading size on very small screens */
+  }
+
+  .btn-theme,
+  .contact-btn {
+    width: 100%; /* Full width buttons */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  select {
+    font-size: 14px; /* Smaller font size */
+  }
+}
