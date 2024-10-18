@@ -112,6 +112,13 @@ const projects = [
       "Sebuah aplikasi untuk menikmati kopi dengan berbagai pilihan dan suasana senja yang indah.",
     link: "projects/kopi-senja/index.html",
   },
+  {
+    img: "img/tailwind.png",
+    title: "Portofolio Use TailwindCSS",
+    description:
+      "Portofolio ini memamerkan proyek-proyek yang dibangun dengan Tailwind, menghadirkan tampilan modern dan fungsional.",
+    link: "projects/portofolio-tailwind",
+  },
 ];
 
 // Theme Toggle
